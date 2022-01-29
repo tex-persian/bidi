@@ -3098,7 +3098,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 % \section{File \texttt{biditools.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{biditools}[2020/05/13 v2 Programming tools for bidi package]
+\ProvidesPackage{biditools}[2022/02/01 v2.1 Programming tools for bidi package]
 \providecommand{\@bidi@saveprimitive}[2]{\begingroup\escapechar`\\\relax
   \edef\@tempa{\string#1}\edef\@tempb{\meaning#1}%
   \ifx\@tempa\@tempb \global\let#2#1%
@@ -3993,10 +3993,10 @@ ill-advised in the old versions of bidi package.%
 \newcommand*{\bidi@afterenddocumentchecklabelsrerunhook}{}
 
 \bidi@patchcmd\enddocument
-  {\fi\endgroup}
+  {\fi}
   {\let\bidi@AfterEndDocumentCheckLabelsRerun\@firstofone
    \bidi@afterenddocumentchecklabelsrerunhook
-   \fi\endgroup}
+   \fi}
    {}
    {\PackageWarning{biditools}{Patching `\string\enddocument' failed}}
 
