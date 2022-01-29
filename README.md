@@ -20,5 +20,5 @@ The following example illustrates how the package can be used.
 
 ## Reporting Issues
 If you think that you have found an issue in the package, please use 
-[the package issue tracker](https://github.com/persiantex/bidi/issues) 
+[the package issue tracker](https://github.com/tex-persian/bidi/issues) 
 to report it.
