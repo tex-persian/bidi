@@ -3940,8 +3940,10 @@ ill-advised in the old versions of bidi package.%
 \long\def\bidi@append#1#2{#1#2}
 \long\def\bidi@prepend#1#2{#2#1}
 
-\bidi@newrobustcmd*{\bidi@AtEndPreamble}{\bidi@gappto\bidi@endpreamblehook}
-\newcommand*{\bidi@endpreamblehook}{}
+%\bidi@newrobustcmd*{\bidi@AtEndPreamble}{\bidi@gappto\bidi@endpreamblehook}
+%\newcommand*{\bidi@endpreamblehook}{}
+
+\bidi@newrobustcmd*{\bidi@AtEndPreamble}{\AddToHook{begindocument/before}}%
 
 \bidi@newrobustcmd*{\bidi@BeforeOutputPageShipOut}{\bidi@gappto\bidi@beforeoutputpageshipouthook}
 \newcommand*{\bidi@beforeoutputpageshipouthook}{}
@@ -3968,26 +3970,28 @@ ill-advised in the old versions of bidi package.%
 \bidi@newrobustcmd*{\bidi@AtEndOutputPage}{\bidi@gappto\bidi@atendoutputpagehook}
 \newcommand*{\bidi@atendoutputpagehook}{}
 
-\bidi@preto\document{%
-  \endgroup
-  \let\bidi@AtEndPreamble\@firstofone
-  \bidi@endpreamblehook
-  \protected\def\bidi@AtEndPreamble{\@notprerr\@gobble}%
-  \bidi@undef\bidi@endpreamblehook
-  \begingroup}
+%\bidi@preto\document{%
+%  \endgroup
+%  \let\bidi@AtEndPreamble\@firstofone
+%  \bidi@endpreamblehook
+%  \protected\def\bidi@AtEndPreamble{\@notprerr\@gobble}%
+%  \bidi@undef\bidi@endpreamblehook
+%  \begingroup}
 
 \bidi@newrobustcmd*{\bidi@AfterPreamble}{\AtBeginDocument}
 \bidi@AtEndPreamble{\let\bidi@AfterPreamble\@firstofone}
 
-\bidi@newrobustcmd*{\bidi@AfterEndPreamble}{\bidi@gappto\bidi@afterendpreamblehook}
-\newcommand*{\bidi@afterendpreamblehook}{}
+%\bidi@newrobustcmd*{\bidi@AfterEndPreamble}{\bidi@gappto\bidi@afterendpreamblehook}
+%\newcommand*{\bidi@afterendpreamblehook}{}
 
-\bidi@appto\document{%
-  \let\bidi@AfterEndPreamble\@firstofone
-  \bidi@afterendpreamblehook
-  \protected\def\bidi@AfterEndPreamble{\@notprerr\@gobble}%
-  \bidi@undef\bidi@afterendpreamblehook
-  \ignorespaces}
+\bidi@newrobustcmd*{\bidi@AfterEndPreamble}{\AddToHook{begindocument/end}}%
+
+%\bidi@appto\document{%
+%  \let\bidi@AfterEndPreamble\@firstofone
+%  \bidi@afterendpreamblehook
+%  \protected\def\bidi@AfterEndPreamble{\@notprerr\@gobble}%
+%  \bidi@undef\bidi@afterendpreamblehook
+%  \ignorespaces}
   
 \bidi@newrobustcmd*{\bidi@AfterEndDocumentCheckLabelsRerun}{\bidi@gappto\bidi@afterenddocumentchecklabelsrerunhook}
 \newcommand*{\bidi@afterenddocumentchecklabelsrerunhook}{}
@@ -4017,20 +4021,22 @@ ill-advised in the old versions of bidi package.%
      \let\bidi@AfterLastShipout\@firstofone
      \bidi@afterlastshipouthook}}
 
-\bidi@newrobustcmd*{\bidi@AfterEndDocument}{\bidi@gappto\bidi@afterenddocumenthook}
-\newcommand*{\bidi@afterenddocumenthook}{}
+%\bidi@newrobustcmd*{\bidi@AfterEndDocument}{\bidi@gappto\bidi@afterenddocumenthook}
+%\newcommand*{\bidi@afterenddocumenthook}{}
 
-\bidi@patchcmd\enddocument
-  {\deadcycles}
-  {\let\bidi@AfterEndDocument\@firstofone
-   \bidi@afterenddocumenthook
-   \deadcycles}
-  {}
-  {\let\bidi@@end\@@end
-   \def\@@end{%
-     \let\bidi@AfterEndDocument\@firstofone
-     \bidi@afterenddocumenthook
-     \bidi@@end}}
+\bidi@newrobustcmd*{\bidi@AfterEndDocument}{\AddToHook{enddocument/end}}%
+
+%\bidi@patchcmd\enddocument
+%  {\deadcycles}
+%  {\let\bidi@AfterEndDocument\@firstofone
+%   \bidi@afterenddocumenthook
+%   \deadcycles}
+%  {}
+%  {\let\bidi@@end\@@end
+%   \def\@@end{%
+%     \let\bidi@AfterEndDocument\@firstofone
+%     \bidi@afterenddocumenthook
+%     \bidi@@end}}
 
 \bidi@newrobustcmd{\bidi@AtBeginEnvironment}[1]{%
   \bidi@csgappto{@bidi@begin@#1@hook}}
