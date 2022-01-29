@@ -23,6 +23,7 @@ A few sentences describing the overall goals of the pull request's commits.
 
 ## Todos
 - [ ] Relevant to the `xepersian` package
+- [ ] [The `bidi` package issue tracker](https://github.com/tex-persian/bidi/issues) has been searched for similar issues?
 - [ ] [The `xepersian` package issue tracker](https://github.com/tex-persian/xepersian/issues) has been searched for similar issues?
 - [ ] Issue tracker has been searched for similar issues?
 - [ ] Links to <tex.stackexchange.com> discussion if appropriate
