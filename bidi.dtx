@@ -292,7 +292,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{50427}
+%% \CheckSum{50477}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -9132,41 +9132,53 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{eso-pic-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{eso-pic-xetex-bidi.def}[2013/04/10 v0.2 bidi adaptations for eso-pic package for XeTeX engine]
+\ProvidesFile{eso-pic-xetex-bidi.def}[2022/02/01 v0.3 bidi adaptations for eso-pic package for XeTeX engine]
 \renewcommand\AtPageLowerLeft[1]{\AtPageUpperLeft{%
-  \put(\LenToUnit{\if@RTLmain\paperwidth\else0pt\fi},\LenToUnit{-\paperheight}){#1}}}
+  \put(\if@RTLmain\paperwidth\else 0\fi,-\paperheight){#1}}}
 
 \ESO@isMEMOIR{%
   \renewcommand\AtTextUpperLeft[1]{%
     \begingroup
       \ifodd\c@page
-        \@tempdima=\spinemargin
+        \ESO@tempdima=\spinemargin
       \else
-        \@tempdima=\paperwidth
-        \advance\@tempdima-\textwidth
-        \advance\@tempdima-\spinemargin
+        \ESO@tempdima=\paperwidth
+        \advance\ESO@tempdima-\textwidth
+        \advance\ESO@tempdima-\spinemargin
       \fi
-      \@tempdimb=-\uppermargin
+      \ESO@tempdimb=-\uppermargin
       \AtPageUpperLeft{%
-        \put(\LenToUnit{\if@RTLmain-\fi\@tempdima},\LenToUnit{\@tempdimb}){#1}%
+        \put(\if@RTLmain-\fi\ESO@tempdima,\ESO@tempdimb){#1}%
       }%
     \endgroup
   }
 }{%
   \renewcommand\AtTextUpperLeft[1]{%
     \begingroup
-      \@tempdima=1in\relax
-      \ifodd\c@page
-        \advance\@tempdima\oddsidemargin
+      \ESO@tempdima=1in\relax
+      \if@twoside
+        \ifodd\c@page
+          \if@RTLmain
+            \advance\ESO@tempdima\evensidemargin
+          \else
+            \advance\ESO@tempdima\oddsidemargin
+          \fi
+        \else
+          \if@RTLmain
+            \advance\ESO@tempdima\oddsidemargin
+          \else
+            \advance\ESO@tempdima\evensidemargin
+          \fi
+        \fi
       \else
-        \advance\@tempdima\evensidemargin
+        \advance\ESO@tempdima\oddsidemargin
       \fi
-      \@tempdimb=-1in\relax
-      \advance\@tempdimb-\topmargin
-      \advance\@tempdimb-\headheight
-      \advance\@tempdimb-\headsep
+      \ESO@tempdimb=-1in\relax
+      \advance\ESO@tempdimb-\topmargin
+      \advance\ESO@tempdimb-\headheight
+      \advance\ESO@tempdimb-\headsep
       \AtPageUpperLeft{%
-        \put(\LenToUnit{\if@RTLmain-\fi\@tempdima},\LenToUnit{\@tempdimb}){#1}%
+        \put(\if@RTLmain-\fi\ESO@tempdima,\ESO@tempdimb){#1}%
       }%
     \endgroup
   }
@@ -22042,7 +22054,7 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{latex-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{latex-xetex-bidi.def}[2019/03/03 v1.3.7 bidi adaptations  for `latex.ltx' for XeTeX engine]
+\ProvidesFile{latex-xetex-bidi.def}[2022/02/01 v1.3.8 bidi adaptations  for `latex.ltx' for XeTeX engine]
 \newcommand{\TeXXeTOn}{\TeXXeTstate\@ne}
 \newcommand{\TeXXeTOff}{\TeXXeTstate\z@}
 \TeXXeTOn
@@ -22734,6 +22746,28 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
    \hbox to\linewidth{\if@RTL\beginR\fi\@itemfudge
    \hskip\dimen\@curtabmar\box\@curline\hfil\if@RTL\endR\fi}%
 \fi}
+
+\ExplSyntaxOn
+\cs_undefine:N \__shipout_picture_overlay:n
+\cs_new:Npn \__shipout_picture_overlay:n #1 {
+    \__shipout_init_page_origins:
+    \if@RTL
+      \kern \__dim_eval:w \textwidth-\c__shipout_horigin_tl \scan_stop:
+    \else
+      \kern -\c__shipout_horigin_tl \scan_stop:
+    \fi
+    \vbox_to_zero:n {
+      \kern -\c__shipout_vorigin_tl \scan_stop:
+      \unitlength 1pt \scan_stop:
+      \hbox_set_to_wd:Nnn \l__shipout_tmp_box \c_zero_dim
+                          { \ignorespaces #1 \hss }
+      \box_set_ht:Nn \l__shipout_tmp_box \c_zero_dim
+      \box_set_dp:Nn \l__shipout_tmp_box \c_zero_dim
+      \box_use:N \l__shipout_tmp_box
+      \tex_vss:D
+    }
+}
+\ExplSyntaxOff
 
 \newcommand*{\bidi@font@@outputpage}{}
 
