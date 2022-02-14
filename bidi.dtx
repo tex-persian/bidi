@@ -5,7 +5,7 @@
 %<*readme>
 ___________________
 The bidi package
-v36.6
+v36.7
 
 This package provides a convenient interface for typesetting
 bidirectional texts in Plain TeX and LaTeX, using XeTeX engine.
@@ -30,7 +30,7 @@ The announcements for the new releases of the package will
 also appear in the Discussions space under the Announcements
 category.
   
-Current version release date: 2022/02/13
+Current version release date: 2022/02/27
 
 ___________________________________________
 Vafa Khalighi
@@ -150,6 +150,7 @@ by Vafa Khalighi.
 \generate{\file{listings-xetex-bidi.def}{\from{\jobname.dtx}{table,listings-xetex-bidi.def}}}
 \generate{\file{loadingorder-xetex-bidi.def}{\from{\jobname.dtx}{table,loadingorder-xetex-bidi.def}}}
 \generate{\file{longtable-xetex-bidi.def}{\from{\jobname.dtx}{table,longtable-xetex-bidi.def}}}
+\generate{\file{lscape-xetex-bidi.def}{\from{\jobname.dtx}{table,lscape-xetex-bidi.def}}}
 \generate{\file{mathtools-xetex-bidi.def}{\from{\jobname.dtx}{table,mathtools-xetex-bidi.def}}}
 \generate{\file{mdframed-xetex-bidi.def}{\from{\jobname.dtx}{table,mdframed-xetex-bidi.def}}}
 \generate{\file{bidi-media9.sty}{\from{\jobname.dtx}{table,bidi-media9.sty}}}
@@ -164,6 +165,7 @@ by Vafa Khalighi.
 \generate{\file{ntheorem-hyper-xetex-bidi.def}{\from{\jobname.dtx}{table,ntheorem-hyper-xetex-bidi.def}}}
 \generate{\file{overpic-xetex-bidi.def}{\from{\jobname.dtx}{table,overpic-xetex-bidi.def}}}
 \generate{\file{pdfbase-xetex-bidi.def}{\from{\jobname.dtx}{table,pdfbase-xetex-bidi.def}}}
+\generate{\file{pdflscape-xetex-bidi.def}{\from{\jobname.dtx}{table,pdflscape-xetex-bidi.def}}}
 \generate{\file{pdfpages-xetex-bidi.def}{\from{\jobname.dtx}{table,pdfpages-xetex-bidi.def}}}
 \generate{\file{pgfcorescopes.code-xetex-bidi.def}{\from{\jobname.dtx}{table,pgfcorescopes.code-xetex-bidi.def}}}
 \generate{\file{picinpar-xetex-bidi.def}{\from{\jobname.dtx}{table,picinpar-xetex-bidi.def}}}
@@ -234,7 +236,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{bidi-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 36.6 of the bidi
+  pdftitle={Source documentation for version 36.7 of the bidi
                 package}%
 }
 \EnableCrossrefs
@@ -253,7 +255,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}\\
 %\LARGE Bidirectional typesetting in plain \TeX{} and \LaTeX, using \XeTeX{} engine\\[5pt]
-%\large Source documentation for \textcolor{blue!65!black}{version 36.6}}
+%\large Source documentation for \textcolor{blue!65!black}{version 36.7}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team to maintain the package in the period 2018--2020.}\\
 %  \url{tex-persian@vafa.ac}}
 %\setcounter{page}{0}
@@ -264,7 +266,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{blue!65!black}{version 36.6}}
+%Source documentation for \textcolor{blue!65!black}{version 36.7}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -313,7 +315,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{50457}
+%% \CheckSum{50476}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -1933,8 +1935,8 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2022/02/13}
-\def\bidi@version{36.6}
+\def\bididate{2022/02/27}
+\def\bidi@version{36.7}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
 \edef\@bidi@info{****************************************************^^J%
@@ -2024,7 +2026,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
   This is the bidi package, Version \bidi@version,
-  Released February 13, 2022. 
+  Released February 27, 2022. 
 }
 \@RTLmainfalse
 \AtBeginDocument{%
@@ -2267,9 +2269,9 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2022/02/13}
+\def\bididate{2022/02/27}
 \catcode`@=11
-\def\bidi@version{36.6}
+\def\bidi@version{36.7}
 \let \protect \relax
 \newlinechar`\^^J
 \edef\@bidi@info{****************************************************^^J%
@@ -2373,7 +2375,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \def\@bidi@pdfcustomproperties{%
   This is the bidi package, Version \bidi@version,
-  Released February 13, 2022. 
+  Released February 27, 2022. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -9157,7 +9159,7 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{eso-pic-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{eso-pic-xetex-bidi.def}[2022/02/14 v0.4 bidi adaptations for eso-pic package for XeTeX engine]
+\ProvidesFile{eso-pic-xetex-bidi.def}[2022/02/27 v0.4 bidi adaptations for eso-pic package for XeTeX engine]
 \renewcommand\AtPageLowerLeft[1]{\AtPageUpperLeft{%
   \put(\if@RTLmain\paperwidth\else 0\fi,-\paperheight){#1}}}
 
@@ -14864,6 +14866,21 @@ bidi implementation of tufte title]
 %    \end{macrocode}
 % \iffalse
 %</longtable-xetex-bidi.def>
+%<*lscape-xetex-bidi.def>
+%\fi
+% \section{File \texttt{lscape-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{lscape-xetex-bidi.def}[2022/02/27 v0.1 bidi adaptations for lscape package for XeTeX engine]
+\bidi@patchcmd{\LS@rot}{90}{%
+  \if@RTL
+    -90%
+  \else
+    90%
+  \fi
+}{}{}
+%    \end{macrocode}
+% \iffalse
+%</lscape-xetex-bidi.def>
 %<*mathtools-xetex-bidi.def>
 %\fi
 % \section{File \texttt{mathtools-xetex-bidi.def}}
@@ -16528,6 +16545,21 @@ bidi implementation of tufte title]
 %    \end{macrocode}
 % \iffalse
 %</pdfbase-xetex-bidi.def>
+%<*pdflscape-xetex-bidi.def>
+%\fi
+% \section{File \texttt{pdflscape-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{pdflscape-xetex-bidi.def}[2022/02/27 v0.1 bidi adaptations for pdflscape package for XeTeX engine]
+\bidi@patchcmd{\landscape}{\PLS@Rotate{90}}{%
+  \if@RTL
+    \PLS@Rotate{-90}%
+  \else
+    \PLS@Rotate{90}%
+  \fi
+}{}{}
+%    \end{macrocode}
+% \iffalse
+%</pdflscape-xetex-bidi.def>
 %<*pdfpages-xetex-bidi.def>
 %\fi
 % \section{File \texttt{pdfpages-xetex-bidi.def}}
@@ -22089,7 +22121,7 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{latex-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{latex-xetex-bidi.def}[2022/02/13 v1.3.9 bidi adaptations  for `latex.ltx' for XeTeX engine]
+\ProvidesFile{latex-xetex-bidi.def}[2022/02/27 v1.4.0 bidi adaptations  for `latex.ltx' for XeTeX engine]
 \newcommand{\TeXXeTOn}{\TeXXeTstate\@ne}
 \newcommand{\TeXXeTOff}{\TeXXeTstate\z@}
 \TeXXeTOn
@@ -22966,6 +22998,7 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{ntheorem}{\input{ntheorem-xetex-bidi.def}}{}
 \@ifpackageloaded{tabularx}{\input{tabularx-xetex-bidi.def}}{}
 \@ifpackageloaded{longtable}{\input{longtable-xetex-bidi.def}}{}
+\@ifpackageloaded{lscape}{\input{lscape-xetex-bidi.def}}{}
 \@ifpackageloaded{hyperref}{\input{hyperref-xetex-bidi.def}}{}
 \@ifpackageloaded{ntheorem-hyper}{\input{ntheorem-hyper-xetex-bidi.def}}{}
 \@ifpackageloaded{fancybox}{\input{fancybox-xetex-bidi.def}}{}
@@ -22981,6 +23014,7 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{framed}{\input{framed-xetex-bidi.def}}{}
 \@ifpackageloaded{overpic}{\input{overpic-xetex-bidi.def}}{}
 \@ifpackageloaded{pdfbase}{\input{pdfbase-xetex-bidi.def}}{}
+\@ifpackageloaded{pdflscape}{\input{pdflscape-xetex-bidi.def}}{}
 \@ifpackageloaded{pdfpages}{\input{pdfpages-xetex-bidi.def}}{}
 \@ifpackageloaded{lettrine}{\input{lettrine-xetex-bidi.def}}{}
 \@ifpackageloaded{lineno}{\input{lineno-xetex-bidi.def}}{}
