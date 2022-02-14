@@ -315,7 +315,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{50476}
+%% \CheckSum{50487}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -14871,11 +14871,11 @@ bidi implementation of tufte title]
 % \section{File \texttt{lscape-xetex-bidi.def}}
 %    \begin{macrocode}
 \ProvidesFile{lscape-xetex-bidi.def}[2022/02/27 v0.1 bidi adaptations for lscape package for XeTeX engine]
-\bidi@patchcmd{\LS@rot}{90}{%
+\bidi@patchcmd{\LS@rot}{\rotatebox{90}{\box\@outputbox}}{%
   \if@RTL
-    -90%
+    \rotatebox[origin=br]{-90}{\box\@outputbox}%
   \else
-    90%
+    \rotatebox{90}{\box\@outputbox}%
   \fi
 }{}{}
 %    \end{macrocode}
@@ -22965,6 +22965,7 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
   \input{mathtools-xetex-bidi.def}%
   }{}
 \@ifpackageloaded{crop}{\RequirePackage{graphicx}}{}
+\@ifpackageloaded{lscape}{\RequirePackage{graphicx}}{}
 \@ifpackageloaded{sidecap}{\RequirePackage{ragged2e}}{}
 \@ifpackageloaded{floatrow}{\RequirePackage{color}}{}
 \@ifpackageloaded{algorithm2e}{\input{algorithm2e-xetex-bidi.def}}{}
