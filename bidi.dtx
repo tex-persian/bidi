@@ -136,6 +136,7 @@ by Vafa Khalighi.
 \generate{\file{floatrow-xetex-bidi.def}{\from{\jobname.dtx}{table,floatrow-xetex-bidi.def}}}
 \generate{\file{flowfram-xetex-bidi.def}{\from{\jobname.dtx}{table,flowfram-xetex-bidi.def}}}
 \generate{\file{footnote-xetex-bidi.def}{\from{\jobname.dtx}{table,footnote-xetex-bidi.def}}}
+\generate{\file{footnotebackref-xetex-bidi.def}{\from{\jobname.dtx}{table,footnotebackref-xetex-bidi.def}}}
 \generate{\file{framed-xetex-bidi.def}{\from{\jobname.dtx}{table,framed-xetex-bidi.def}}}
 \generate{\file{ftnright-xetex-bidi.def}{\from{\jobname.dtx}{table,ftnright-xetex-bidi.def}}}
 \generate{\file{graphicx-xetex-bidi.def}{\from{\jobname.dtx}{table,graphicx-xetex-bidi.def}}}
@@ -315,7 +316,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{50421}
+%% \CheckSum{50581}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -12435,6 +12436,80 @@ bidi implementation of tufte title]
 %    \end{macrocode}
 % \iffalse
 %</footnote-xetex-bidi.def>
+%<*footnotebackref-xetex-bidi.def>
+%\fi
+% \section{File \texttt{footnotebackref-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{footnotebackref-xetex-bidi.def}[2022/02/27 v0.1 bidi adaptations for footnotebackref package for XeTeX engine]
+\LetLtxMacro{\BHFN@OldLTRFootnote}{\LTRfootnote}
+\LetLtxMacro{\BHFN@OldRTLFootnote}{\RTLfootnote}
+
+\renewcommand*\LTRfootnote{%
+    \refstepcounter{BackrefHyperFootnoteCounter}%
+    \edef\BackrefFootnoteTag{bhfn:\theBackrefHyperFootnoteCounter}%
+    \label{\BackrefFootnoteTag}%
+    \@ifnextchar[\Backref@OptLTRHyperFootnote\Backref@HyperLTRFootnote}
+    
+\renewcommand*\RTLfootnote{%
+    \refstepcounter{BackrefHyperFootnoteCounter}%
+    \edef\BackrefFootnoteTag{bhfn:\theBackrefHyperFootnoteCounter}%
+    \label{\BackrefFootnoteTag}%
+    \@ifnextchar[\Backref@OptRTLHyperFootnote\Backref@HyperRTLFootnote}
+\newcommand\Backref@HyperLTRFootnote[1]{%
+    \BHFN@OldLTRFootnote{\Backref@HyperSymbol#1}}
+    
+\newcommand\Backref@HyperRTLFootnote[1]{%
+    \BHFN@OldRTLFootnote{\Backref@HyperSymbol#1}}
+    
+\newcommand\Backref@OptHyperLTRFootnote[2][\empty]{%
+    \BHFN@OldLTRFootnote[#1]{\Backref@HyperSymbol#2}}
+    
+\newcommand\Backref@OptHyperRTLFootnote[2][\empty]{%
+    \BHFN@OldRTLFootnote[#1]{\Backref@HyperSymbol#2}}
+    
+\bidi@AfterFile{extrafootnotefeatures-xetex-bidi.def}{%
+\ifFootnoteBackref@numberlinked
+\renewcommand{\footfootmark}{%
+  \ifdim\footmarkwidth < \z@
+    \llap{\hb@xt@ -\footmarkwidth{%
+            \hss\normalfont\footscript{\hyperref[\BackrefFootnoteTag]{\@thefnmark}}}%
+          \hspace*{-\footmarkwidth}}%
+  \else
+    \ifdim\footmarkwidth = \z@
+      {\normalfont\footscript{\hyperref[\BackrefFootnoteTag]{\@thefnmark}}}%
+    \else
+      \hb@xt@\footmarkwidth{\hss\normalfont\footscript{\hyperref[\BackrefFootnoteTag]{\@thefnmark}}}%
+    \fi
+  \fi}
+\renewcommand{\LTRfootfootmark}{%
+  \ifdim\footmarkwidth < \z@
+    \llap{\hb@xt@ -\footmarkwidth{%
+            \hss\normalfont\LTRfootscript{\hyperref[\BackrefFootnoteTag]{\@thefnmark}}}%
+          \hspace*{-\footmarkwidth}}%
+  \else
+    \ifdim\footmarkwidth = \z@
+      {\normalfont\LTRfootscript{\hyperref[\BackrefFootnoteTag]{\@thefnmark}}}%
+    \else
+      \hb@xt@\footmarkwidth{\hss\normalfont\LTRfootscript{\hyperref[\BackrefFootnoteTag]{\@thefnmark}}}%
+    \fi
+  \fi}
+\renewcommand{\RTLfootfootmark}{%
+  \ifdim\footmarkwidth < \z@
+    \llap{\hb@xt@ -\footmarkwidth{%
+            \hss\normalfont\RTLfootscript{\hyperref[\BackrefFootnoteTag]{\@thefnmark}}}%
+          \hspace*{-\footmarkwidth}}%
+  \else
+    \ifdim\footmarkwidth = \z@
+      {\normalfont\RTLfootscript{\hyperref[\BackrefFootnoteTag]{\@thefnmark}}}%
+    \else
+      \hb@xt@\footmarkwidth{\hss\normalfont\RTLfootscript{\hyperref[\BackrefFootnoteTag]{\@thefnmark}}}%
+    \fi
+  \fi}
+\fi
+}
+%    \end{macrocode}
+% \iffalse
+%</footnotebackref-xetex-bidi.def>
 %<*framed-xetex-bidi.def>
 %\fi
 % \section{File \texttt{framed-xetex-bidi.def}}
@@ -23035,6 +23110,7 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{longtable}{\input{longtable-xetex-bidi.def}}{}
 \@ifpackageloaded{lscape}{\input{lscape-xetex-bidi.def}}{}
 \@ifpackageloaded{hyperref}{\input{hyperref-xetex-bidi.def}}{}
+\@ifpackageloaded{footnotebackref}{\input{footnotebackref-xetex-bidi.def}}{}
 \@ifpackageloaded{ntheorem-hyper}{\input{ntheorem-hyper-xetex-bidi.def}}{}
 \@ifpackageloaded{fancybox}{\input{fancybox-xetex-bidi.def}}{}
 \@ifpackageloaded{fancyhdr}{\input{fancyhdr-xetex-bidi.def}}{}
