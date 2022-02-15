@@ -315,7 +315,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{50487}
+%% \CheckSum{50509}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -14878,6 +14878,24 @@ bidi implementation of tufte title]
     \rotatebox{90}{\box\@outputbox}%
   \fi
 }{}{}
+\g@addto@macro{\landscape}{%
+  \let\bidi@left@footnoterule\left@footnoterule
+  \let\bidi@right@footnoterule\right@footnoterule
+  \def\left@footnoterule{%
+    \if@RTL
+      \bidi@right@footnoterule
+    \else
+      \bidi@left@footnoterule
+    \fi
+  }%
+  \def\right@footnoterule{%
+    \if@RTL
+      \bidi@left@footnoterule
+    \else
+      \bidi@right@footnoterule
+    \fi
+  }%
+}
 %    \end{macrocode}
 % \iffalse
 %</lscape-xetex-bidi.def>
