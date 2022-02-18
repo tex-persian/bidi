@@ -30,7 +30,7 @@ The announcements for the new releases of the package will
 also appear in the Discussions space under the Announcements
 category.
   
-Current version release date: 2022/02/27
+Current version release date: 2022/02/18
 
 ___________________________________________
 Vafa Khalighi
@@ -1936,7 +1936,7 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2022/02/27}
+\def\bididate{2022/02/18}
 \def\bidi@version{36.7}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
@@ -2027,7 +2027,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
   This is the bidi package, Version \bidi@version,
-  Released February 27, 2022. 
+  Released February 18, 2022. 
 }
 \@RTLmainfalse
 \AtBeginDocument{%
@@ -2270,7 +2270,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2022/02/27}
+\def\bididate{2022/02/18}
 \catcode`@=11
 \def\bidi@version{36.7}
 \let \protect \relax
@@ -2376,7 +2376,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \def\@bidi@pdfcustomproperties{%
   This is the bidi package, Version \bidi@version,
-  Released February 27, 2022. 
+  Released February 18, 2022. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -8203,7 +8203,7 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{cuted-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{cuted-xetex-bidi.def}[2022/02/27 v0.7 bidi adaptations for cuted package for XeTeX engine]
+\ProvidesFile{cuted-xetex-bidi.def}[2022/02/18 v0.7 bidi adaptations for cuted package for XeTeX engine]
 
 \def\RTL@outputdblcol{%
   \if@firstcolumn
@@ -9176,7 +9176,7 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{eso-pic-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{eso-pic-xetex-bidi.def}[2022/02/27 v0.4 bidi adaptations for eso-pic package for XeTeX engine]
+\ProvidesFile{eso-pic-xetex-bidi.def}[2022/02/18 v0.4 bidi adaptations for eso-pic package for XeTeX engine]
 \renewcommand\AtPageLowerLeft[1]{\AtPageUpperLeft{%
   \put(\if@RTLmain\paperwidth\else 0\fi,-\paperheight){#1}}}
 
@@ -12440,7 +12440,7 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{footnotebackref-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{footnotebackref-xetex-bidi.def}[2022/02/27 v0.1 bidi adaptations for footnotebackref package for XeTeX engine]
+\ProvidesFile{footnotebackref-xetex-bidi.def}[2022/02/18 v0.1 bidi adaptations for footnotebackref package for XeTeX engine]
 \LetLtxMacro{\BHFN@OldLTRFootnote}{\LTRfootnote}
 \LetLtxMacro{\BHFN@OldRTLFootnote}{\RTLfootnote}
 
@@ -14961,7 +14961,7 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{lscape-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{lscape-xetex-bidi.def}[2022/02/27 v0.1 bidi adaptations for lscape package for XeTeX engine]
+\ProvidesFile{lscape-xetex-bidi.def}[2022/02/18 v0.1 bidi adaptations for lscape package for XeTeX engine]
 \bidi@patchcmd{\LS@rot}{\rotatebox{90}{\box\@outputbox}}{%
   \if@RTL
     \rotatebox[origin=br]{-90}{\box\@outputbox}%
@@ -15091,7 +15091,7 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{bidi-media9.sty}}
 %    \begin{macrocode}
-\ProvidesExplPackage{bidi-media9}{2022/02/27}{0.4}
+\ProvidesExplPackage{bidi-media9}{2022/02/18}{0.4}
 {bidi fixes for media9 package for the XeTeX engine}
 
 \keys_define:nn{media9/mbtn}{
@@ -16624,7 +16624,7 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{pdfbase-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{pdfbase-xetex-bidi.def}[2022/02/27 v0.4 bidi adaptations for pdfbase package for XeTeX engine]
+\ProvidesFile{pdfbase-xetex-bidi.def}[2022/02/18 v0.4 bidi adaptations for pdfbase package for XeTeX engine]
 \ExplSyntaxOn
 \cs_set_eq:NN\pbs_outputpage_orig:\@outputpage
 \cs_set_nopar:Npn\@outputpage{
@@ -16654,7 +16654,7 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{pdflscape-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{pdflscape-xetex-bidi.def}[2022/02/27 v0.1 bidi adaptations for pdflscape package for XeTeX engine]
+\ProvidesFile{pdflscape-xetex-bidi.def}[2022/02/18 v0.1 bidi adaptations for pdflscape package for XeTeX engine]
 \bidi@patchcmd{\landscape}{\PLS@Rotate{90}}{%
   \if@RTL
     \PLS@Rotate{-90}%
@@ -22226,7 +22226,7 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{latex-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{latex-xetex-bidi.def}[2022/02/27 v1.4.0 bidi adaptations  for `latex.ltx' for XeTeX engine]
+\ProvidesFile{latex-xetex-bidi.def}[2022/02/18 v1.4.0 bidi adaptations  for `latex.ltx' for XeTeX engine]
 \newcommand{\TeXXeTOn}{\TeXXeTstate\@ne}
 \newcommand{\TeXXeTOff}{\TeXXeTstate\z@}
 \TeXXeTOn
